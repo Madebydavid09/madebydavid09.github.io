@@ -150,22 +150,6 @@ footer{
 }
 footer .brand img{height:22px;}
 
-/* CUSTOM CURSOR */
-.cursor{
-  position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;
-  background:#fff;pointer-events:none;z-index:999;
-  transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease,background .25s ease;
-  mix-blend-mode:difference;
-}
-.cursor.hover{width:64px;height:64px;background:#fff;}
-.cursor-label{
-  position:fixed;top:0;left:0;color:#000;font-size:11px;font-weight:700;
-  pointer-events:none;z-index:1000;opacity:0;transform:translate(-50%,-50%);
-  transition:opacity .2s ease;text-transform:uppercase;letter-spacing:.05em;
-}
-.cursor-label.show{opacity:1;}
-@media(hover:none),(pointer:coarse){.cursor,.cursor-label{display:none;}}
-
 @media(max-width:680px){
   nav{padding:16px 18px;}
   nav ul{gap:16px;font-size:13px;}
@@ -203,10 +187,12 @@ footer .brand img{height:22px;}
   </ul>
 </nav>
 
-<section class="hero wrap">
-  <h1>Video, ktoré má dôvod, prečo existuje.</h1>
-  <p>Natáčanie, fotografia a strih pre firmy, tvorcov a projekty, ktoré chcú obsah s príbehom — nie len pekné zábery.</p>
-  <a href="#kontakt" class="btn">Napíš mi</a>
+<section class="hero">
+  <div class="wrap">
+    <h1>Video, ktoré má dôvod, prečo existuje.</h1>
+    <p>Natáčanie, fotografia a strih pre firmy, tvorcov a projekty, ktoré chcú obsah s príbehom — nie len pekné zábery.</p>
+    <a href="#kontakt" class="btn">Napíš mi</a>
+  </div>
 </section>
 
 <div class="marquee">
@@ -287,24 +273,8 @@ footer .brand img{height:22px;}
   <div>© 2026</div>
 </footer>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-label" id="cursorLabel">Pozrieť</div>
-
 <script>
 if (window.matchMedia('(hover: hover)').matches) {
-  const cursor = document.getElementById('cursor');
-  const label = document.getElementById('cursorLabel');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    label.style.left = e.clientX + 'px';
-    label.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('.video-slot').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); label.classList.add('show'); });
-    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); label.classList.remove('show'); });
-  });
-
   const btn = document.querySelector('.btn');
   if (btn) {
     btn.addEventListener('mousemove', e => {
