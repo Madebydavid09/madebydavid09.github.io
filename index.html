@@ -56,7 +56,7 @@ nav ul a{transition:color .25s ease;}
 nav ul a:hover{color:var(--dim);}
 
 /* HERO */
-.hero{padding:100px 24px 90px;border-bottom:1px solid var(--line);}
+.hero{padding:100px 0 90px;border-bottom:1px solid var(--line);}
 .hero h1{font-size:clamp(38px,6vw,68px);max-width:720px;margin-bottom:26px;
   opacity:0;transform:translateY(22px);animation:fadeUp .7s ease forwards .05s;}
 .hero p{max-width:460px;color:var(--dim);font-size:16px;margin-bottom:34px;
@@ -89,7 +89,7 @@ nav ul a:hover{color:var(--dim);}
 .marquee-track span::after{content:"•";margin-left:28px;color:var(--line);}
 @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-25%);}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
-.section{padding:80px 24px;border-bottom:1px solid var(--line);}
+.section{padding:80px 0;border-bottom:1px solid var(--line);}
 .section,.hero{scroll-margin-top:90px;}
 .eyebrow{font-size:13px;color:var(--dim);font-weight:500;margin-bottom:10px;}
 .section h2{font-size:clamp(26px,3.5vw,36px);margin-bottom:44px;}
@@ -144,6 +144,19 @@ nav ul a:hover{color:var(--dim);}
 .contact-list a{transition:color .25s ease;}
 .contact-list a:hover{color:var(--text);}
 
+/* FORM */
+.contact-form{margin-top:36px;padding-top:36px;border-top:1px solid var(--line);}
+.form-field{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+  color:var(--text);padding:12px 2px;font-family:'Poppins',sans-serif;font-size:15px;
+  margin-bottom:26px;transition:border-color .25s ease;
+}
+.form-field::placeholder{color:var(--dim);}
+.form-field:focus{outline:none;border-color:#fff;}
+textarea.form-field{resize:vertical;min-height:90px;}
+.form-status{margin-top:16px;font-size:14px;color:var(--dim);}
+.form-status.ok{color:#fff;}
+
 footer{
   padding:30px 24px;display:flex;justify-content:space-between;align-items:center;
   color:var(--dim);font-size:12px;
@@ -153,8 +166,8 @@ footer .brand img{height:22px;}
 @media(max-width:680px){
   nav{padding:16px 18px;}
   nav ul{gap:16px;font-size:13px;}
-  .hero{padding:70px 18px 60px;}
-  .section{padding:56px 18px;}
+  .hero{padding:70px 0 60px;}
+  .section{padding:56px 0;}
   .section h2{margin-bottom:30px;}
   .contact-box{padding:30px 22px;}
   .about{gap:30px;}
@@ -264,6 +277,16 @@ footer .brand img{height:22px;}
         <li>Telefón <span><a href="tel:+421951163633">0951 163 633</a></span></li>
         <li>Instagram <span><a href="https://instagram.com/made_by.david" target="_blank">@made_by.david</a></span></li>
       </ul>
+
+      <form id="contactForm" class="contact-form">
+        <input class="form-field" type="text" name="name" placeholder="Meno" required>
+        <input class="form-field" type="email" name="email" placeholder="Email" required>
+        <textarea class="form-field" name="message" placeholder="O čo ide? Čo potrebuješ a do kedy..." required></textarea>
+        <input type="hidden" name="_subject" value="Nová správa z made_by.david">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="btn">Odoslať správu</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -275,7 +298,7 @@ footer .brand img{height:22px;}
 
 <script>
 if (window.matchMedia('(hover: hover)').matches) {
-  const btn = document.querySelector('.btn');
+  const btn = document.querySelector('.hero .btn');
   if (btn) {
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
@@ -285,6 +308,37 @@ if (window.matchMedia('(hover: hover)').matches) {
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
   }
+}
+</script>
+
+<script>
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    status.textContent = 'Odosielam...';
+    status.className = 'form-status';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/d.i.davidilicc@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm)
+      });
+      if (res.ok) {
+        status.textContent = 'Správa odoslaná, ozvem sa čo najskôr!';
+        status.className = 'form-status ok';
+        contactForm.reset();
+      } else {
+        status.textContent = 'Niečo sa pokazilo, skús to prosím znova alebo napíš priamo na email.';
+      }
+    } catch (err) {
+      status.textContent = 'Niečo sa pokazilo, skús to prosím znova alebo napíš priamo na email.';
+    }
+    submitBtn.disabled = false;
+  });
 }
 </script>
 
