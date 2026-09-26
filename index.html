@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>made by.david — video</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+
+:root{
+  --bg:#000000;
+  --panel:#111111;
+  --text:#FFFFFF;
+  --dim:#8A8A8A;
+  --line:#2B2B2B;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  font-weight:400;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+h1,h2{font-family:'Poppins',sans-serif;font-weight:800;text-transform:lowercase;line-height:1.1;letter-spacing:-.01em;}
+
+/* NAV */
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 24px;border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand img{height:26px;width:auto;}
+.brand span{font-weight:700;font-size:16px;text-transform:lowercase;}
+nav ul{list-style:none;display:flex;gap:30px;font-size:14px;font-weight:500;}
+nav ul a:hover{color:var(--dim);}
+
+/* HERO */
+.hero{padding:100px 24px 90px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(38px,6vw,68px);max-width:720px;margin-bottom:26px;}
+.hero p{max-width:460px;color:var(--dim);font-size:16px;margin-bottom:34px;}
+.btn{
+  display:inline-block;background:#fff;color:#000;
+  font-weight:700;padding:14px 28px;font-size:14px;
+}
+.btn:hover{background:var(--dim);}
+
+/* SECTION */
+.section{padding:80px 24px;border-bottom:1px solid var(--line);}
+.eyebrow{font-size:13px;color:var(--dim);font-weight:500;margin-bottom:10px;}
+.section h2{font-size:clamp(26px,3.5vw,36px);margin-bottom:44px;}
+
+/* SLUZBY */
+.service-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:24px 0;border-top:1px solid var(--line);gap:20px;
+}
+.service-row:last-child{border-bottom:1px solid var(--line);}
+.service-row h3{font-weight:700;font-size:19px;}
+.service-row p{color:var(--dim);font-size:14px;max-width:380px;text-align:right;}
+
+/* PRACE - video grid */
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.video-slot{
+  aspect-ratio:16/10;background:var(--panel);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.video-slot img{height:34px;width:auto;opacity:.85;}
+.video-slot span{
+  position:absolute;bottom:14px;left:16px;font-size:12px;color:var(--dim);
+}
+
+/* O MNE */
+.about{display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;}
+.about-photo{
+  width:220px;height:280px;flex-shrink:0;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--dim);font-size:13px;text-align:center;
+}
+.about-text{max-width:480px;color:var(--dim);font-size:16px;}
+.about-text p{margin-bottom:18px;}
+.about-text strong{color:var(--text);}
+
+/* KONTAKT */
+.contact-box{border:1px solid var(--line);padding:44px 36px;}
+.contact-box p{color:var(--dim);max-width:420px;margin-bottom:28px;}
+.contact-list{list-style:none;font-size:16px;}
+.contact-list li{padding:14px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;}
+.contact-list li:last-child{border-bottom:1px solid var(--line);}
+.contact-list span{color:var(--dim);font-size:13px;}
+
+footer{
+  padding:30px 24px;display:flex;justify-content:space-between;align-items:center;
+  color:var(--dim);font-size:12px;
+}
+footer .brand img{height:16px;}
+
+@media(max-width:560px){
+  .service-row{flex-direction:column;align-items:flex-start;}
+  .service-row p{text-align:left;}
+  .video-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img src="logo-made-by-david-icon.png" alt="made by.david">
+    <span>made by.david</span>
+  </div>
+  <ul>
+    <li><a href="#sluzby">služby</a></li>
+    <li><a href="#prace">práce</a></li>
+    <li><a href="#o-mne">o mne</a></li>
+    <li><a href="#kontakt">kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero wrap">
+  <h1>video, ktoré má dôvod, prečo existuje.</h1>
+  <p>Natáčanie, fotografia a strih pre firmy, tvorcov a projekty, ktoré chcú obsah s príbehom — nie len pekné zábery.</p>
+  <a href="#kontakt" class="btn">napíš mi</a>
+</section>
+
+<section class="section" id="sluzby">
+  <div class="wrap">
+    <div class="eyebrow">čo robím</div>
+    <h2>služby</h2>
+
+    <div class="service-row">
+      <h3>natáčanie</h3>
+      <p>Video produkcia na mieru — od nápadu a scenára cez natáčací deň až po hotový materiál.</p>
+    </div>
+    <div class="service-row">
+      <h3>fotografia</h3>
+      <p>Produktová, portrétová aj eventová fotografia — pre firmy aj jednotlivcov.</p>
+    </div>
+    <div class="service-row">
+      <h3>strih a postprodukcia</h3>
+      <p>Strih, farebná korekcia a zvuk, pripravené presne pre Instagram, TikTok aj web.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prace">
+  <div class="wrap">
+    <div class="eyebrow">vybrané práce</div>
+    <h2>video portfólio</h2>
+    <div class="video-grid">
+      <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 01</span></div>
+      <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 02</span></div>
+      <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 03</span></div>
+      <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 04</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="o-mne">
+  <div class="wrap">
+    <div class="eyebrow">kto som</div>
+    <h2>o mne</h2>
+    <div class="about">
+      <div class="about-photo">tvoja fotka</div>
+      <div class="about-text">
+        <p>Volám sa <strong>David</strong> a robím video — od nápadu, cez natáčanie, až po finálny strih.</p>
+        <p>Venujem sa tomu už pár rokov a stále sa v tom posúvam ďalej. Najviac ma baví moment na place, keď vymýšľam zábery, a potom celý proces strihu, kde sa z materiálu poskladá príbeh.</p>
+        <p>Momentálne študujem multimédiá, takže sa k videu dostávam aj v škole — a mám priestor sa v tom neustále zlepšovať.</p>
+        <p>Nechcem robiť videá, ktoré len dobre vyzerajú. Chcem, aby mali dôvod, prečo existujú.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="kontakt" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="eyebrow">poďme spolupracovať</div>
+    <h2>kontakt</h2>
+    <div class="contact-box">
+      <p>Napíš mi pár slov o projekte — čo potrebuješ a do kedy — a ozvem sa čo najskôr.</p>
+      <ul class="contact-list">
+        <li>email <span><a href="mailto:d.i.davidilicc@gmail.com">d.i.davidilicc@gmail.com</a></span></li>
+        <li>telefón <span><a href="tel:+421951163633">0951 163 633</a></span></li>
+        <li>instagram <span><a href="https://instagram.com/made_by.david" target="_blank">@made_by.david</a></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand"><img src="logo-made-by-david-icon.png" alt="made by.david"><span>made by.david</span></div>
+  <div>© 2026</div>
+</footer>
+
+</body>
+</html>
