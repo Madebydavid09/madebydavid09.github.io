@@ -15,7 +15,9 @@
   --dim:#8A8A8A;
   --line:#2B2B2B;
 }
+html{scroll-behavior:smooth;}
 *{box-sizing:border-box;margin:0;padding:0;}
+section[id]{scroll-margin-top:90px;}
 html{scroll-behavior:smooth;}
 body{
   position:relative;
@@ -76,14 +78,19 @@ nav ul a:hover{color:var(--dim);}
   .reveal,.hero h1,.hero p,.hero .btn{opacity:1!important;transform:none!important;animation:none!important;}
 }
 
-/* MARQUEE */
-.marquee{overflow:hidden;border-bottom:1px solid var(--line);padding:16px 0;white-space:nowrap;}
-.marquee-track{display:inline-flex;gap:40px;animation:scrollLeft 22s linear infinite;}
-.marquee-track span{font-size:14px;font-weight:600;color:var(--dim);letter-spacing:.02em;display:inline-flex;align-items:center;gap:40px;}
-.marquee-track img{height:12px;width:auto;opacity:.6;}
-@keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* MANIFESTO - inverzná sekcia */
+.manifesto{background:#fff;color:#000;padding:110px 24px;text-align:center;}
+.manifesto p{font-weight:800;font-size:clamp(28px,4.5vw,50px);line-height:1.3;max-width:800px;margin:0 auto;letter-spacing:-.01em;}
+.manifesto span{opacity:.35;}
+.marquee{overflow:hidden;border-bottom:1px solid var(--line);padding:18px 0;white-space:nowrap;}
+.marquee-track{display:inline-flex;align-items:center;animation:scrollLeft 30s linear infinite;}
+.marquee-track span{font-size:14px;font-weight:600;color:var(--dim);letter-spacing:.03em;
+  display:inline-flex;align-items:center;padding:0 28px;text-transform:uppercase;}
+.marquee-track span::after{content:"•";margin-left:28px;color:var(--line);}
+@keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-25%);}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
 .section{padding:80px 24px;border-bottom:1px solid var(--line);}
+.section,.hero{scroll-margin-top:90px;}
 .eyebrow{font-size:13px;color:var(--dim);font-weight:500;margin-bottom:10px;}
 .section h2{font-size:clamp(26px,3.5vw,36px);margin-bottom:44px;}
 
@@ -143,6 +150,22 @@ footer{
 }
 footer .brand img{height:22px;}
 
+/* CUSTOM CURSOR */
+.cursor{
+  position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;
+  background:#fff;pointer-events:none;z-index:999;
+  transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease,background .25s ease;
+  mix-blend-mode:difference;
+}
+.cursor.hover{width:64px;height:64px;background:#fff;}
+.cursor-label{
+  position:fixed;top:0;left:0;color:#000;font-size:11px;font-weight:700;
+  pointer-events:none;z-index:1000;opacity:0;transform:translate(-50%,-50%);
+  transition:opacity .2s ease;text-transform:uppercase;letter-spacing:.05em;
+}
+.cursor-label.show{opacity:1;}
+@media(hover:none),(pointer:coarse){.cursor,.cursor-label{display:none;}}
+
 @media(max-width:680px){
   nav{padding:16px 18px;}
   nav ul{gap:16px;font-size:13px;}
@@ -188,8 +211,10 @@ footer .brand img{height:22px;}
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>Natáčanie <img src="logo-made-by-david-icon.png" alt=""> Fotografia <img src="logo-made-by-david-icon.png" alt=""> Strih <img src="logo-made-by-david-icon.png" alt=""> made_by.david <img src="logo-made-by-david-icon.png" alt=""></span>
-    <span>Natáčanie <img src="logo-made-by-david-icon.png" alt=""> Fotografia <img src="logo-made-by-david-icon.png" alt=""> Strih <img src="logo-made-by-david-icon.png" alt=""> made_by.david <img src="logo-made-by-david-icon.png" alt=""></span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
   </div>
 </div>
 
@@ -220,7 +245,7 @@ footer .brand img{height:22px;}
     <div class="video-grid">
       <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="video 02" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="video 02" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:9/16;display:block;"></iframe></div>
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="video 03" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 04</span></div>
     </div>
   </div>
@@ -262,6 +287,37 @@ footer .brand img{height:22px;}
   <div>© 2026</div>
 </footer>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-label" id="cursorLabel">Pozrieť</div>
+
+<script>
+if (window.matchMedia('(hover: hover)').matches) {
+  const cursor = document.getElementById('cursor');
+  const label = document.getElementById('cursorLabel');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    label.style.left = e.clientX + 'px';
+    label.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('.video-slot').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); label.classList.add('show'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); label.classList.remove('show'); });
+  });
+
+  const btn = document.querySelector('.btn');
+  if (btn) {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) * .3;
+      const y = (e.clientY - r.top - r.height/2) * .3;
+      btn.style.transform = `translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+  }
+}
+</script>
+
 <script>
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const items = document.querySelectorAll('.reveal');
@@ -277,4 +333,3 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 </script>
 </body>
 </html>
-
