@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfólio — made_by.david</title>
-<link rel="icon" href="../logo-made-by-david-icon.png">
+<title>made_by.david — video</title>
+<link rel="icon" href="logo-made-by-david-icon.png">
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
 
 :root{
@@ -125,7 +124,7 @@ nav ul a:hover{color:var(--dim);}
 /* O MNE */
 .about{display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;}
 .about-photo{
-  width:220px;height:280px;flex-shrink:0;border:1px solid var(--line);
+  width:240px;height:240px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;
   display:flex;align-items:center;justify-content:center;overflow:hidden;
   color:var(--dim);font-size:13px;text-align:center;
 }
@@ -172,7 +171,7 @@ footer .brand img{height:22px;}
   .section h2{margin-bottom:30px;}
   .contact-box{padding:30px 22px;}
   .about{gap:30px;}
-  .about-photo{width:160px;height:200px;}
+  .about-photo{width:180px;height:180px;}
 }
 @media(max-width:560px){
   .service-row{flex-direction:column;align-items:flex-start;}
@@ -184,172 +183,178 @@ footer .brand img{height:22px;}
 @media(max-width:400px){
   nav .brand span{display:none;}
 }
-
-
-/* PORTFOLIO PAGE */
-.pf-hero{padding:70px 0 30px;}
-.pf-hero h1{font-size:clamp(30px,5vw,48px);margin-bottom:14px;}
-
-.main-tabs{display:flex;gap:12px;margin-top:30px;}
-.main-tab{
-  background:transparent;border:1px solid var(--line);color:var(--dim);
-  padding:12px 30px;font-size:15px;font-weight:700;font-family:'Poppins',sans-serif;
-  cursor:pointer;transition:all .25s ease;
-}
-.main-tab:hover{border-color:#555;color:var(--text);}
-.main-tab.active{background:#fff;color:#000;border-color:#fff;}
-
-.main-group{display:none;padding:50px 0 90px;}
-.main-group.show{display:block;}
-
-.subcat{margin-bottom:64px;}
-.subcat h3{font-size:20px;font-weight:700;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line);}
-
-.sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
-
-.pf-photo{
-  aspect-ratio:4/5;background:var(--panel);border:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:13px;
-  overflow:hidden;transition:border-color .25s ease;
-}
-.pf-photo:hover{border-color:#555;}
-.pf-photo img{width:100%;height:100%;object-fit:cover;}
-
-@media(max-width:640px){.sub-grid{grid-template-columns:1fr;}.main-tab{padding:10px 22px;font-size:14px;}}
-
 </style>
 </head>
 <body>
 
 <nav>
   <div class="brand">
-    <img src="../logo-made-by-david-icon.png" alt="made_by.david">
+    <img src="logo-made-by-david-icon.png" alt="made_by.david">
     <span>made_by.david</span>
   </div>
   <ul>
-    <li><a href="../index.html#sluzby">Služby</a></li>
-    <li><a href="./" style="font-weight:700;">Portfólio</a></li>
-    <li><a href="../index.html#o-mne">O mne</a></li>
-    <li><a href="../index.html#kontakt">Kontakt</a></li>
+    <li><a href="#sluzby">Služby</a></li>
+    <li><a href="portfolio/">Portfólio</a></li>
+    <li><a href="#o-mne">O mne</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
   </ul>
 </nav>
 
-<section class="pf-hero wrap">
-  <h1>Portfólio</h1>
-  <p style="color:var(--dim);max-width:480px;">Video aj foto práce rozdelené podľa typu.</p>
-  <div class="main-tabs">
-    <button class="main-tab active" data-tab="video">Video</button>
-    <button class="main-tab" data-tab="foto">Foto</button>
+<section class="hero">
+  <div class="wrap">
+    <h1>Video, ktoré má dôvod, prečo existuje.</h1>
+    <p>Natáčanie, fotografia a strih pre firmy, tvorcov a projekty, ktoré chcú obsah s príbehom — nie len pekné zábery.</p>
+    <a href="#kontakt" class="btn">Napíš mi</a>
   </div>
 </section>
 
-<div class="wrap">
-
-  <!-- =====================================================
-       SKUPINA: VIDEO
-       Ked chces pridat CELU NOVU PODKATEGORIU (napr. "Reklamy"),
-       skopiruj cely blok <div class="subcat">...</div> nizsie
-       aj s <div class="sub-grid">, zmen nadpis v <h3> a vloz vlastne polozky.
-  ===================================================== -->
-  <div class="main-group show" id="group-video">
-
-    <div class="subcat">
-      <h3>Event video</h3>
-      <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Event video 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="Event video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
-      <!-- ==== VOLNE MIESTO na dalsie video v "Event video" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
-      </div>
-    </div>
-
-    <div class="subcat">
-      <h3>Car edits</h3>
-      <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Car edit 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="Car edit 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
-      <!-- ==== VOLNE MIESTO na dalsie video v "Car edits" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
-      </div>
-    </div>
-
-    <div class="subcat">
-      <h3>Movies</h3>
-      <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Movie 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="Movie 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
-      <!-- ==== VOLNE MIESTO na dalsie video v "Movies" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
-      </div>
-    </div>
-
-    <!-- ==== SEM PRIDAJ NOVU VIDEO PODKATEGORIU (skopiruj cely <div class="subcat">...</div> blok vyssie) ==== -->
-
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
+    <span>Natáčanie</span><span>Fotografia</span><span>Strih</span><span>made_by.david</span>
   </div>
-
-  <!-- =====================================================
-       SKUPINA: FOTO
-       Rovnaky princip ako pri VIDEO vyssie.
-  ===================================================== -->
-  <div class="main-group" id="group-foto">
-
-    <div class="subcat">
-      <h3>Street</h3>
-      <div class="sub-grid">
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      </div>
-    </div>
-
-    <div class="subcat">
-      <h3>Model</h3>
-      <div class="sub-grid">
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      </div>
-    </div>
-
-    <div class="subcat">
-      <h3>Animal</h3>
-      <div class="sub-grid">
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      </div>
-    </div>
-
-    <div class="subcat">
-      <h3>Dokumentárna fotografia</h3>
-      <div class="sub-grid">
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
-      </div>
-    </div>
-
-    <!-- ==== SEM PRIDAJ NOVU FOTO PODKATEGORIU (skopiruj cely <div class="subcat">...</div> blok vyssie) ==== -->
-
-  </div>
-
 </div>
 
+<section class="section reveal" id="sluzby">
+  <div class="wrap">
+    <div class="eyebrow">Čo robím</div>
+    <h2>Služby</h2>
+
+    <div class="service-row">
+      <h3>Natáčanie</h3>
+      <p>Video produkcia na mieru — od nápadu a scenára cez natáčací deň až po hotový materiál.</p>
+    </div>
+    <div class="service-row">
+      <h3>Fotografia</h3>
+      <p>Produktová, portrétová aj eventová fotografia — pre firmy aj jednotlivcov.</p>
+    </div>
+    <div class="service-row">
+      <h3>Strih a postprodukcia</h3>
+      <p>Strih, farebná korekcia a zvuk, pripravené presne pre Instagram, TikTok aj web.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="prace">
+  <div class="wrap">
+    <div class="eyebrow">Vybrané práce</div>
+    <h2>Video portfólio</h2>
+    <div class="video-grid">
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="video 02" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="video 03" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <div class="video-slot"><img src="logo-made-by-david-icon.png" alt="play"><span>video 04</span></div>
+    </div>
+    <a href="portfolio/" class="btn" style="margin-top:36px;">Zobraziť celé portfólio</a>
+  </div>
+</section>
+
+<section class="section reveal" id="o-mne">
+  <div class="wrap">
+    <div class="eyebrow">Kto som</div>
+    <h2>O mne</h2>
+    <div class="about">
+      <div class="about-photo"><img src="moja-fotka.png" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="about-text">
+        <p>Volám sa <strong>David</strong> a robím video — od nápadu, cez natáčanie, až po finálny strih.</p>
+        <p>Venujem sa tomu už pár rokov a stále sa v tom posúvam ďalej. Najviac ma baví moment na place, keď vymýšľam zábery, a potom celý proces strihu, kde sa z materiálu poskladá príbeh.</p>
+        <p>Momentálne študujem multimédiá, takže sa k videu dostávam aj v škole — a mám priestor sa v tom neustále zlepšovať.</p>
+        <p>Nechcem robiť videá, ktoré len dobre vyzerajú. Chcem, aby mali dôvod, prečo existujú.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="kontakt" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="eyebrow">Poďme spolupracovať</div>
+    <h2>Kontakt</h2>
+    <div class="contact-box">
+      <p>Napíš mi pár slov o projekte — čo potrebuješ a do kedy — a ozvem sa čo najskôr.</p>
+      <ul class="contact-list">
+        <li>Email <span><a href="mailto:d.i.davidilicc@gmail.com">d.i.davidilicc@gmail.com</a></span></li>
+        <li>Telefón <span><a href="tel:+421951163633">0951 163 633</a></span></li>
+        <li>Instagram <span><a href="https://instagram.com/made_by.david" target="_blank">@made_by.david</a></span></li>
+      </ul>
+
+      <form id="contactForm" class="contact-form">
+        <input class="form-field" type="text" name="name" placeholder="Meno" required>
+        <input class="form-field" type="email" name="email" placeholder="Email" required>
+        <textarea class="form-field" name="message" placeholder="O čo ide? Čo potrebuješ a do kedy..." required></textarea>
+        <input type="hidden" name="_subject" value="Nová správa z made_by.david">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="btn">Odoslať správu</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="brand"><img src="../logo-made-by-david-icon.png" alt="made_by.david"><span>made_by.david</span></div>
+  <div class="brand"><img src="logo-made-by-david-icon.png" alt="made_by.david"><span>made_by.david</span></div>
   <div>© 2026</div>
 </footer>
 
 <script>
-document.querySelectorAll('.main-tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.main-group').forEach(g => g.classList.remove('show'));
-    btn.classList.add('active');
-    document.getElementById('group-' + btn.dataset.tab).classList.add('show');
-  });
-});
+if (window.matchMedia('(hover: hover)').matches) {
+  const btn = document.querySelector('.hero .btn');
+  if (btn) {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) * .3;
+      const y = (e.clientY - r.top - r.height/2) * .3;
+      btn.style.transform = `translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+  }
+}
 </script>
 
+<script>
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    status.textContent = 'Odosielam...';
+    status.className = 'form-status';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/d.i.davidilicc@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm)
+      });
+      if (res.ok) {
+        status.textContent = 'Správa odoslaná, ozvem sa čo najskôr!';
+        status.className = 'form-status ok';
+        contactForm.reset();
+      } else {
+        status.textContent = 'Niečo sa pokazilo, skús to prosím znova alebo napíš priamo na email.';
+      }
+    } catch (err) {
+      status.textContent = 'Niečo sa pokazilo, skús to prosím znova alebo napíš priamo na email.';
+    }
+    submitBtn.disabled = false;
+  });
+}
+</script>
+
+<script>
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+}
+</script>
 </body>
 </html>
