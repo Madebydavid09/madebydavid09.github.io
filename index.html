@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>made_by.david — video</title>
+<link rel="icon" href="logo-made-by-david-icon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
 
@@ -15,14 +16,24 @@
   --line:#2B2B2B;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 body{
-  background:var(--bg);
+  position:relative;
+  background:radial-gradient(ellipse 900px 600px at 50% -10%, #1c1c1c, transparent),
+              radial-gradient(ellipse 800px 500px at 100% 100%, #161616, transparent),
+              #000000;
+  background-attachment:fixed;
   color:var(--text);
   font-family:'Poppins',sans-serif;
   font-weight:400;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+nav,.hero,.section,footer,.marquee{position:relative;z-index:2;}
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
@@ -32,7 +43,8 @@ h1,h2{font-family:'Poppins',sans-serif;font-weight:800;line-height:1.1;letter-sp
 nav{
   display:flex;justify-content:space-between;align-items:center;
   padding:22px 24px;border-bottom:1px solid var(--line);
-  position:sticky;top:0;z-index:50;background:var(--bg);
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
 .brand{display:flex;align-items:center;gap:10px;}
 .brand img{height:34px;width:auto;}
@@ -64,7 +76,13 @@ nav ul a:hover{color:var(--dim);}
   .reveal,.hero h1,.hero p,.hero .btn{opacity:1!important;transform:none!important;animation:none!important;}
 }
 
-/* SECTION */
+/* MARQUEE */
+.marquee{overflow:hidden;border-bottom:1px solid var(--line);padding:16px 0;white-space:nowrap;}
+.marquee-track{display:inline-flex;gap:40px;animation:scrollLeft 22s linear infinite;}
+.marquee-track span{font-size:14px;font-weight:600;color:var(--dim);letter-spacing:.02em;display:inline-flex;align-items:center;gap:40px;}
+.marquee-track img{height:12px;width:auto;opacity:.6;}
+@keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
 .section{padding:80px 24px;border-bottom:1px solid var(--line);}
 .eyebrow{font-size:13px;color:var(--dim);font-weight:500;margin-bottom:10px;}
 .section h2{font-size:clamp(26px,3.5vw,36px);margin-bottom:44px;}
@@ -73,9 +91,13 @@ nav ul a:hover{color:var(--dim);}
 .service-row{
   display:flex;justify-content:space-between;align-items:baseline;
   padding:24px 0;border-top:1px solid var(--line);gap:20px;
+  transition:padding-left .3s ease;
 }
+.service-row:hover{padding-left:12px;}
 .service-row:last-child{border-bottom:1px solid var(--line);}
 .service-row h3{font-weight:700;font-size:19px;}
+.service-row h3::after{content:"→";opacity:0;margin-left:10px;transition:opacity .3s ease;display:inline-block;}
+.service-row:hover h3::after{opacity:1;}
 .service-row p{color:var(--dim);font-size:14px;max-width:380px;text-align:right;}
 
 /* PRACE - video grid */
@@ -163,6 +185,13 @@ footer .brand img{height:22px;}
   <p>Natáčanie, fotografia a strih pre firmy, tvorcov a projekty, ktoré chcú obsah s príbehom — nie len pekné zábery.</p>
   <a href="#kontakt" class="btn">Napíš mi</a>
 </section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Natáčanie <img src="logo-made-by-david-icon.png" alt=""> Fotografia <img src="logo-made-by-david-icon.png" alt=""> Strih <img src="logo-made-by-david-icon.png" alt=""> made_by.david <img src="logo-made-by-david-icon.png" alt=""></span>
+    <span>Natáčanie <img src="logo-made-by-david-icon.png" alt=""> Fotografia <img src="logo-made-by-david-icon.png" alt=""> Strih <img src="logo-made-by-david-icon.png" alt=""> made_by.david <img src="logo-made-by-david-icon.png" alt=""></span>
+  </div>
+</div>
 
 <section class="section reveal" id="sluzby">
   <div class="wrap">
