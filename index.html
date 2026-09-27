@@ -173,12 +173,13 @@ footer .brand img{height:22px;}
 
 @media(max-width:680px){
   nav{padding:16px 18px;}
+  nav .brand span{display:none;}
   nav ul{gap:16px;font-size:13px;}
   .hero{padding:70px 0 60px;}
   .section{padding:56px 0;}
   .section h2{margin-bottom:30px;}
   .contact-box{padding:30px 22px;}
-  .about{gap:30px;}
+  .about{gap:30px;justify-content:center;text-align:center;}
   .about-photo{width:180px;height:180px;}
 }
 @media(max-width:560px){
@@ -188,9 +189,6 @@ footer .brand img{height:22px;}
   nav ul{gap:12px;}
   nav ul li{font-size:12px;}
 }
-@media(max-width:400px){
-  nav .brand span{display:none;}
-}
 </style>
 </head>
 <body>
@@ -198,6 +196,7 @@ footer .brand img{height:22px;}
 <nav>
   <a class="brand" href="index.html">
     <img src="logo-made-by-david-icon.png" alt="made_by.david">
+    <span>made_by.david</span>
   </a>
   <ul>
     <li><a href="#sluzby">Služby</a></li>
