@@ -217,10 +217,36 @@ footer .brand img{height:22px;}
 .pf-photo{
   aspect-ratio:4/5;background:var(--panel);border:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:13px;
-  overflow:hidden;transition:border-color .25s ease;
+  overflow:hidden;transition:border-color .25s ease;position:relative;
 }
 .pf-photo:hover{border-color:#555;}
 .pf-photo img{width:100%;height:100%;object-fit:cover;}
+
+/* ALBUM (viacero fotiek v jednej dlazdici, otvara sa ako galeria) */
+.pf-album{cursor:pointer;}
+.pf-album .album-count{
+  position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.7);
+  color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;
+}
+
+/* LIGHTBOX GALERIA */
+.lightbox{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;
+  align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:88vw;max-height:82vh;object-fit:contain;}
+.lightbox-close{position:absolute;top:24px;right:28px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.1);border:none;color:#fff;font-size:26px;
+  width:50px;height:50px;cursor:pointer;transition:background .2s ease;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.2);}
+.lightbox-prev{left:20px;}
+.lightbox-next{right:20px;}
+.lightbox-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--dim);font-size:13px;}
+@media(max-width:600px){.lightbox-nav{width:40px;height:40px;font-size:20px;}}
 
 @media(max-width:640px){.sub-grid{grid-template-columns:1fr;}.main-tab{padding:10px 22px;font-size:14px;}}
 
@@ -290,7 +316,16 @@ footer .brand img{height:22px;}
       </div>
     </div>
 
-    <!-- ==== SEM PRIDAJ NOVU VIDEO PODKATEGORIU (skopiruj cely <div class="subcat">...</div> blok vyssie) ==== -->
+    <!-- ====================================================================
+         NOVA VIDEO PODKATEGORIA - ako pridať celú novú (napr. "Reklamy"):
+         1. Skopíruj CELÝ blok jednej existujúcej podkategórie vyššie —
+            od riadku <div class="subcat"> až po jej zodpovedajúci uzatvárací </div>
+            (teda aj s <h3> aj s <div class="sub-grid">...</div> vnútri)
+         2. Vlož skopírovaný blok sem, na miesto tohto komentára
+         3. V <h3>...</h3> zmeň názov na svoju novú kategóriu (napr. "Reklamy")
+         4. Vnútri sub-grid buď nechaj jednu ukážkovú "+ pridaj video" dlaždicu,
+            alebo rovno vlož vlastné video-slot bloky s YouTube ID
+    ==================================================================== -->
 
   </div>
 
@@ -331,12 +366,31 @@ footer .brand img{height:22px;}
     <div class="subcat">
       <h3>Dokumentárna fotografia</h3>
       <div class="sub-grid">
-      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>+ pridaj fotku</span></div>
+      <!-- ====================================================================
+           ALBUM (viacero fotiek z jedneho eventu/dna) — SEM PRIDAJ SVOJ ALBUM:
+           1. Nahraj vsetky fotky albumu na GitHub (napr. do priecinka fotky/event1/)
+           2. Dole v <script> najdi "albums = {...}" a pridaj novy zaznam podla vzoru
+           3. Sem skopiruj cely <div class="pf-photo pf-album">...</div> blok,
+              zmen data-album na presne to iste meno, co si pouzil v albums objekte,
+              a src prveho obrazku (nahlad) na prvu fotku z albumu
+      ==================================================================== -->
+      <div class="pf-photo pf-album" data-album="event1" onclick="openAlbum('event1')">
+        <span>+ pridaj album (zatiaľ prázdny)</span>
+        <div class="album-count">0 fotiek</div>
+      </div>
       </div>
     </div>
 
-    <!-- ==== SEM PRIDAJ NOVU FOTO PODKATEGORIU (skopiruj cely <div class="subcat">...</div> blok vyssie) ==== -->
+    <!-- ====================================================================
+         NOVA FOTO PODKATEGORIA - ako pridať celú novú (napr. "Portrét"):
+         1. Skopíruj CELÝ blok jednej existujúcej podkategórie vyššie —
+            od riadku <div class="subcat"> až po jej zodpovedajúci uzatvárací </div>
+            (teda aj s <h3> aj s <div class="sub-grid">...</div> vnútri)
+         2. Vlož skopírovaný blok sem, na miesto tohto komentára
+         3. V <h3>...</h3> zmeň názov na svoju novú kategóriu (napr. "Portrét")
+         4. Vnútri sub-grid buď nechaj jednu ukážkovú "+ pridaj fotku" dlaždicu,
+            alebo rovno vlož vlastné fotky / album (pozri návod pri albumoch nižšie v kóde)
+    ==================================================================== -->
 
   </div>
 
@@ -346,6 +400,70 @@ footer .brand img{height:22px;}
   <div class="brand"><img src="../logo-made-by-david-icon.png" alt="made_by.david"><span>made_by.david</span></div>
   <div>© 2026</div>
 </footer>
+
+<!-- LIGHTBOX GALERIA - nemen, funguje automaticky pre vsetky albumy -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeAlbum()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navAlbum(-1)">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="navAlbum(1)">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+/*
+  ================================================================
+  ALBUMY - sem pridavaj nove albumy fotiek (napr. event, svadba...)
+
+  Kazdy album je jeden riadok: 'meno_albumu': ['cesta/foto1.jpg','cesta/foto2.jpg', ...]
+  - 'meno_albumu' musi byt presne to iste ako data-album="..." pri dlazdici v HTML vyssie
+  - Do zoznamu [] das cesty ku vsetkym fotkam z toho albumu, oddelene ciarkou
+  - Pocet fotiek v badge ("X fotiek") sa pocita automaticky, nemusis to riesit rucne
+  ================================================================
+*/
+const albums = {
+  'event1': [
+    // 'fotky/event1/01.jpg',
+    // 'fotky/event1/02.jpg',
+  ],
+};
+
+// automaticky doplni pocet fotiek do badge pri kazdom albume
+document.querySelectorAll('.pf-album').forEach(el => {
+  const key = el.dataset.album;
+  const count = (albums[key] || []).length;
+  const badge = el.querySelector('.album-count');
+  if (badge) badge.textContent = count + ' fotiek';
+});
+
+let currentAlbum = [];
+let currentIndex = 0;
+
+function openAlbum(key) {
+  currentAlbum = albums[key] || [];
+  if (currentAlbum.length === 0) { alert('Tento album je zatiaľ prázdny — pridaj doňho fotky v kóde.'); return; }
+  currentIndex = 0;
+  showImage();
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeAlbum() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+function navAlbum(dir) {
+  currentIndex = (currentIndex + dir + currentAlbum.length) % currentAlbum.length;
+  showImage();
+}
+function showImage() {
+  document.getElementById('lightboxImg').src = currentAlbum[currentIndex];
+  document.getElementById('lightboxCounter').textContent = (currentIndex+1) + ' / ' + currentAlbum.length;
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') navAlbum(1);
+  if (e.key === 'ArrowLeft') navAlbum(-1);
+  if (e.key === 'Escape') closeAlbum();
+});
+</script>
 
 <script>
 document.querySelectorAll('.main-tab').forEach(btn => {
