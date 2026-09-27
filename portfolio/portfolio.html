@@ -229,12 +229,14 @@ footer .brand img{height:22px;}
   </ul>
 </nav>
 
-<section class="pf-hero wrap">
-  <h1>Portfólio</h1>
-  <p style="color:var(--dim);max-width:480px;">Video aj foto práce rozdelené podľa typu.</p>
-  <div class="main-tabs">
-    <button class="main-tab active" data-tab="video">Video</button>
-    <button class="main-tab" data-tab="foto">Foto</button>
+<section class="pf-hero">
+  <div class="wrap">
+    <h1>Portfólio</h1>
+    <p style="color:var(--dim);max-width:480px;">Video aj foto práce rozdelené podľa typu.</p>
+    <div class="main-tabs">
+      <button class="main-tab active" data-tab="video">Video</button>
+      <button class="main-tab" data-tab="foto">Foto</button>
+    </div>
   </div>
 </section>
 
@@ -377,24 +379,6 @@ footer .brand img{height:22px;}
 </div>
 
 <script>
-/*
-  ================================================================
-  ALBUMY FOTIEK
-
-  Nižšie je hotový album "fll" ako príklad — presne takto vyzerá,
-  keď má album fotky. Ak chceš vytvoriť ĎALŠÍ album:
-
-  1) Napíš nový riadok podľa vzoru:  'nazov-albumu': [ ... ],
-     ('nazov-albumu' musí byť presne to isté meno, aké si dal
-      do data-album="..." pri dlaždici v HTML vyššie)
-
-  2) Do zátvorky [ ] vypíš cesty ku všetkým fotkám z priečinka,
-     každú v úvodzovkách a oddelenú čiarkou — presne ako pri "fll" nižšie
-
-  Počet fotiek v bublinke na dlaždici ("X fotiek") sa počíta
-  automaticky sám — to nikde ručne neprepisuj.
-  ================================================================
-*/
 const albums = {
   'fll': [
     'FLL.jpg',
@@ -410,7 +394,6 @@ const albums = {
   ],
 };
 
-// automaticky doplni pocet fotiek do badge pri kazdom albume
 document.querySelectorAll('.pf-album').forEach(el => {
   const key = el.dataset.album;
   const count = (albums[key] || []).length;
@@ -422,8 +405,6 @@ let currentAlbum = [];
 let currentIndex = 0;
 let preloaded = {};
 
-// nacita vsetky fotky albumu na pozadi hned pri otvoreni,
-// aby dalsie prechody medzi fotkami boli rychle (uz su v pamati prehliadaca)
 function preloadAlbum(list) {
   list.forEach(src => {
     if (!preloaded[src]) {
@@ -447,13 +428,11 @@ function closeAlbum() {
 }
 function navAlbum(dir) {
   const img = document.getElementById('lightboxImg');
-  // fotka najprv odplynie na stranu, odkial prisla nova
   img.style.transform = `translateX(${dir * -40}px)`;
   img.style.opacity = '0';
   setTimeout(() => {
     currentIndex = (currentIndex + dir + currentAlbum.length) % currentAlbum.length;
     showImage();
-    // pripravi fotku na opacnej strane bez animacie, potom ju plynulo prisunie na stred
     img.style.transition = 'none';
     img.style.transform = `translateX(${dir * 40}px)`;
     requestAnimationFrame(() => {
@@ -474,7 +453,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeAlbum();
 });
 
-// SWIPE na mobile (potiahnutie prstom dolava/doprava prepne fotku)
 let touchStartX = 0;
 const lightboxEl = document.getElementById('lightbox');
 lightboxEl.addEventListener('touchstart', e => {
@@ -490,9 +468,6 @@ lightboxEl.addEventListener('touchend', e => {
 </script>
 
 <script>
-/*
-  PREPINANIE VIDEO / FOTO
-*/
 document.querySelectorAll('.main-tab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
