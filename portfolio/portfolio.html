@@ -356,18 +356,32 @@ footer .brand img{height:22px;}
     </div>
 
     <div class="subcat">
+      <h3>Animal</h3>
+      <div class="sub-grid">
+      <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
+      </div>
+    </div>
+
+    <div class="subcat">
       <h3>Dokumentárna fotografia</h3>
       <div class="sub-grid">
       <!-- ====================================================================
-           ALBUM (viacero fotiek z jedneho eventu/dna) — SEM PRIDAJ SVOJ ALBUM:
-           1. Nahraj vsetky fotky albumu na GitHub (napr. do priecinka fotky/event1/)
-           2. Dole v <script> najdi "albums = {...}" a pridaj novy zaznam podla vzoru
-           3. Sem skopiruj cely <div class="pf-photo pf-album">...</div> blok,
-              zmen data-album na presne to iste meno, co si pouzil v albums objekte,
-              a src prveho obrazku (nahlad) na prvu fotku z albumu
+           TU JE HOTOVÝ PRÍKLAD ALBUMU (album "fll" nižšie) — takto vyzerá album,
+           ktorý má fotky. Keď budeš chcieť pridať ĎALŠÍ album (napr. z inej akcie):
+
+           1) Fotky nahraj na GitHub do nového priečinka, napr. Fotky/nazov-akcie/
+           2) Skopíruj CELÝ tento <div class="pf-photo pf-album">...</div> blok
+              (aj s img vnútri) a vlož ho hneď vedľa/pod tento
+           3) V skopírovanom bloku zmeň:
+                - data-album="fll"           →  data-album="nazov-akcie"
+                - onclick="openAlbum('fll')" →  onclick="openAlbum('nazov-akcie')"
+                - src="Fotky/FLL/..."         →  cestu k prvej fotke z nového priečinka (náhľad dlaždice)
+           4) Choď dole do <script> časti "const albums" a tam isté urob znova —
+              pridaj nový riadok 'nazov-akcie': [...] so zoznamom VŠETKÝCH fotiek z priečinka
       ==================================================================== -->
-      <div class="pf-photo pf-album" data-album="event1" onclick="openAlbum('event1')">
-        <span>+ pridaj album (zatiaľ prázdny)</span>
+      <div class="pf-photo pf-album" data-album="fll" onclick="openAlbum('fll')">
+        <img src="Fotky/FLL/_DSC0998-2.jpg" alt="FLL">
         <div class="album-count">0 fotiek</div>
       </div>
       </div>
@@ -405,18 +419,34 @@ footer .brand img{height:22px;}
 <script>
 /*
   ================================================================
-  ALBUMY - sem pridavaj nove albumy fotiek (napr. event, svadba...)
+  ALBUMY FOTIEK
 
-  Kazdy album je jeden riadok: 'meno_albumu': ['cesta/foto1.jpg','cesta/foto2.jpg', ...]
-  - 'meno_albumu' musi byt presne to iste ako data-album="..." pri dlazdici v HTML vyssie
-  - Do zoznamu [] das cesty ku vsetkym fotkam z toho albumu, oddelene ciarkou
-  - Pocet fotiek v badge ("X fotiek") sa pocita automaticky, nemusis to riesit rucne
+  Nižšie je hotový album "fll" ako príklad — presne takto vyzerá,
+  keď má album fotky. Ak chceš vytvoriť ĎALŠÍ album:
+
+  1) Napíš nový riadok podľa vzoru:  'nazov-albumu': [ ... ],
+     ('nazov-albumu' musí byť presne to isté meno, aké si dal
+      do data-album="..." pri dlaždici v HTML vyššie)
+
+  2) Do zátvorky [ ] vypíš cesty ku všetkým fotkám z priečinka,
+     každú v úvodzovkách a oddelenú čiarkou — presne ako pri "fll" nižšie
+
+  Počet fotiek v bublinke na dlaždici ("X fotiek") sa počíta
+  automaticky sám — to nikde ručne neprepisuj.
   ================================================================
 */
 const albums = {
-  'event1': [
-    // 'fotky/event1/01.jpg',
-    // 'fotky/event1/02.jpg',
+  'fll': [
+    'Fotky/FLL/_DSC0998-2.jpg',
+    'Fotky/FLL/_DSC1060.jpg',
+    'Fotky/FLL/_DSC1210-2.jpg',
+    'Fotky/FLL/_DSC1570-2.jpg',
+    'Fotky/FLL/_DSC1645-2.jpg',
+    'Fotky/FLL/_DSC1841.jpg',
+    'Fotky/FLL/_DSC1893.jpg',
+    'Fotky/FLL/_DSC2030-2.jpg',
+    'Fotky/FLL/_DSC2143-2.jpg',
+    'Fotky/FLL/_DSC2720-2.jpg',
   ],
 };
 
