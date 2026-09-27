@@ -205,6 +205,15 @@ footer .brand img{height:22px;}
 .subcat{margin-bottom:64px;}
 .subcat h3{font-size:20px;font-weight:700;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line);}
 
+/*
+  NÁVOD - GRID PODKATEGÓRIÍ (video aj foto nižšie v HTML):
+  - PRIDAŤ VIDEO: nájdi v HTML komentár "SEM PRIDAJ NOVE VIDEO", skopíruj celý <div class="video-slot">...</div> a zmeň VIDEO_ID v src=""
+  - PRIDAŤ FOTKU: nájdi komentár "SEM PRIDAJ NOVU FOTKU", nahraj fotku na GitHub, nahraď riadok za <div class="pf-photo"><img src="NAZOV.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+  - Súčasný stav: automaticky sa poukladajú vedľa seba podľa šírky obrazovky (min. 240px na položku)
+  - PRESNE DVE V RIADKU: zmeň grid-template-columns na repeat(2,1fr);
+  - PRESNE JEDNO V RIADKU: zmeň na grid-template-columns:1fr;
+  - ZAROVNAŤ NA STRED (keď je položiek málo): pridaj max-width:700px;margin:0 auto; za gap:16px;
+*/
 .sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
 
 .pf-photo{
@@ -222,13 +231,12 @@ footer .brand img{height:22px;}
 <body>
 
 <nav>
-  <div class="brand">
+  <a class="brand" href="../index.html">
     <img src="../logo-made-by-david-icon.png" alt="made_by.david">
-    <span>made_by.david</span>
-  </div>
+  </a>
   <ul>
     <li><a href="../index.html#sluzby">Služby</a></li>
-    <li><a href="./portfolio.html" style="font-weight:700;">Portfólio</a></li>
+    <li><a href="portfolio.html" style="font-weight:700;">Portfólio</a></li>
     <li><a href="../index.html#o-mne">O mne</a></li>
     <li><a href="../index.html#kontakt">Kontakt</a></li>
   </ul>
@@ -254,12 +262,12 @@ footer .brand img{height:22px;}
   <div class="main-group show" id="group-video">
 
     <div class="subcat">
-      <h3>Eventové videa</h3>
+      <h3>Event video</h3>
       <div class="sub-grid">
       <!-- ==== VIDEO polozka: Event video 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
       <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="Event video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Event video" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>  </span></div>
+      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
       </div>
     </div>
 
@@ -269,17 +277,17 @@ footer .brand img{height:22px;}
       <!-- ==== VIDEO polozka: Car edit 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
       <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="Car edit 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Car edits" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>  </span></div>
+      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
       </div>
     </div>
 
     <div class="subcat">
-      <h3>Propagačné</h3>
+      <h3>Movies</h3>
       <div class="sub-grid">
       <!-- ==== VIDEO polozka: Movie 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
       <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="Movie 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Movies" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
-      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>  </span></div>
+      <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="play"><span>+ pridaj video</span></div>
       </div>
     </div>
 
@@ -297,9 +305,9 @@ footer .brand img{height:22px;}
       <h3>Street</h3>
       <div class="sub-grid">
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       </div>
     </div>
 
@@ -307,9 +315,9 @@ footer .brand img{height:22px;}
       <h3>Model</h3>
       <div class="sub-grid">
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       </div>
     </div>
 
@@ -317,7 +325,7 @@ footer .brand img{height:22px;}
       <h3>Animal</h3>
       <div class="sub-grid">
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       </div>
     </div>
 
@@ -325,7 +333,7 @@ footer .brand img{height:22px;}
       <h3>Dokumentárna fotografia</h3>
       <div class="sub-grid">
       <!-- ==== FOTO polozka — SEM PRIDAJ NOVU FOTKU (nahraj subor na GitHub, potom sem daj <img src="NAZOV-SUBORU.jpg" ...>) ==== -->
-      <div class="pf-photo"><span>  </span></div>
+      <div class="pf-photo"><span>+ pridaj fotku</span></div>
       </div>
     </div>
 
