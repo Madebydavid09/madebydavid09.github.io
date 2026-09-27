@@ -108,7 +108,7 @@ footer .brand img{height:22px;}
 }
 
 /* PORTFOLIO PAGE */
-.pf-hero{padding:70px 0 30px;}
+.pf-hero{padding:70px 0 30px;border-bottom:1px solid var(--line);}
 .pf-hero h1{font-size:clamp(30px,5vw,48px);margin-bottom:14px;}
 
 .main-tabs{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
@@ -448,8 +448,22 @@ function closeAlbum() {
   document.getElementById('lightbox').classList.remove('open');
 }
 function navAlbum(dir) {
-  currentIndex = (currentIndex + dir + currentAlbum.length) % currentAlbum.length;
-  showImage();
+  const img = document.getElementById('lightboxImg');
+  // fotka najprv odplynie na stranu, odkial prisla nova
+  img.style.transform = `translateX(${dir * -40}px)`;
+  img.style.opacity = '0';
+  setTimeout(() => {
+    currentIndex = (currentIndex + dir + currentAlbum.length) % currentAlbum.length;
+    showImage();
+    // pripravi fotku na opacnej strane bez animacie, potom ju plynulo prisunie na stred
+    img.style.transition = 'none';
+    img.style.transform = `translateX(${dir * 40}px)`;
+    requestAnimationFrame(() => {
+      img.style.transition = 'transform .28s ease, opacity .28s ease';
+      img.style.transform = 'translateX(0)';
+      img.style.opacity = '1';
+    });
+  }, 280);
 }
 function showImage() {
   document.getElementById('lightboxImg').src = currentAlbum[currentIndex];
