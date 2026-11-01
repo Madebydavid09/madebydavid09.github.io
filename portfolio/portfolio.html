@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
-<title>Portfólio — made_by.david</title>
-<meta name="description" content="Video aj foto práce rozdelené podľa typu — made_by.david.">
-<meta property="og:title" content="Portfólio — made_by.david">
-<meta property="og:description" content="Video aj foto práce rozdelené podľa typu.">
+<title>Portfólio | made_by.david</title>
+<meta name="description" content="Portfólio videografa a fotografa z Bratislavy — eventové a propagačné videá, autá, street, portrétna a dokumentárna fotografia.">
+<meta property="og:title" content="Portfólio | made_by.david">
+<meta property="og:description" content="Eventové a propagačné videá, autá, street, portrétna a dokumentárna fotografia — Bratislava.">
 <meta property="og:image" content="https://madebydavid09.github.io/og-image.png">
 <meta property="og:url" content="https://madebydavid09.github.io/portfolio/portfolio.html">
 <meta property="og:type" content="website">
@@ -60,9 +60,17 @@ nav{
 .brand{display:flex;align-items:center;gap:10px;}
 .brand img{height:34px;width:auto;}
 .brand span{font-weight:700;font-size:16px;}
-nav ul{list-style:none;display:flex;gap:30px;font-size:14px;font-weight:500;}
+nav ul{list-style:none;display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500;}
 nav ul a{transition:color .25s ease;}
 nav ul a:hover{color:var(--dim);}
+nav ul li:last-child a{
+  border:1px solid #fff;padding:8px 18px;display:inline-block;
+  transition:background .25s ease,color .25s ease;
+}
+nav ul li:last-child a:hover{background:#fff;color:#000;}
+@media(max-width:560px){
+  nav ul li:last-child a{padding:5px 10px;}
+}
 
 /* HERO */
 .hero{padding:100px 0 90px;border-bottom:1px solid var(--line);}
