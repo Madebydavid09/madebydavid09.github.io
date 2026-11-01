@@ -13,7 +13,10 @@
 <meta property="og:url" content="https://madebydavid09.github.io/portfolio/portfolio.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../logo-made-by-david-icon.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
@@ -145,7 +148,7 @@ footer .brand img{height:22px;}
 
 /*
   NÁVOD - GRID PODKATEGÓRIÍ (video aj foto nižšie v HTML):
-  - PRIDAŤ VIDEO: nájdi v HTML komentár "SEM PRIDAJ NOVE VIDEO", skopíruj celý <div class="video-slot">...</div> a zmeň VIDEO_ID v src=""
+  - PRIDAŤ VIDEO: nájdi v HTML komentár "SEM PRIDAJ NOVE VIDEO", skopíruj celý <div class="video-slot">...</div> a zmeň VIDEO_ID v data-src="" (musi byt data-src, NIE src — inak sa video nacita bez suhlasu s cookies)
   - PRIDAŤ FOTKU: nájdi komentár "SEM PRIDAJ NOVU FOTKU", nahraj fotku na GitHub, nahraď riadok za <div class="pf-photo"><img src="NAZOV.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
   - Súčasný stav: automaticky sa poukladajú vedľa seba podľa šírky obrazovky (min. 240px na položku)
   - PRESNE DVE V RIADKU: zmeň grid-template-columns na repeat(2,1fr);
@@ -229,6 +232,64 @@ footer .brand img{height:22px;}
 @media(max-width:600px){.lightbox-nav{width:40px;height:40px;font-size:20px;}}
 @media(max-width:640px){.sub-grid{grid-template-columns:1fr;}.main-tab{padding:10px 22px;font-size:14px;}}
 
+
+/* ===== COOKIE CONSENT ===== */
+footer a{text-decoration:underline;text-underline-offset:3px;transition:color .25s ease;}
+footer a:hover{color:var(--text);}
+.cc-btn{
+  font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;padding:11px 18px;cursor:pointer;
+  border:1px solid #fff;background:transparent;color:#fff;
+  transition:background .25s ease,color .25s ease,border-color .25s ease;
+}
+.cc-btn:hover{background:#fff;color:#000;}
+.cc-btn.cc-primary{background:#fff;color:#000;}
+.cc-btn.cc-primary:hover{background:var(--dim);border-color:var(--dim);}
+.cc-btn.cc-link{border-color:transparent;color:var(--dim);padding-left:6px;padding-right:6px;text-decoration:underline;text-underline-offset:3px;}
+.cc-btn.cc-link:hover{background:transparent;color:#fff;}
+.cc{
+  position:fixed;left:20px;bottom:20px;z-index:300;width:min(460px,calc(100vw - 40px));
+  max-height:calc(100vh - 40px);overflow:auto;background:#111;border:1px solid var(--line);
+  padding:22px;box-shadow:0 10px 40px rgba(0,0,0,.6);font-size:13px;line-height:1.55;
+}
+.cc[hidden],.cc-view[hidden],.cc-mini[hidden]{display:none;}
+.cc-title{font-weight:700;font-size:15px;margin-bottom:8px;}
+.cc-text{color:var(--dim);margin-bottom:16px;}
+.cc-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.cc-cat{border-top:1px solid var(--line);padding:14px 0;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;}
+.cc-cat h4{font-size:13px;font-weight:700;margin-bottom:3px;}
+.cc-cat p{color:var(--dim);font-size:12px;}
+.cc-tag{display:inline-block;margin-left:8px;font-size:10px;font-weight:600;border:1px solid var(--line);color:var(--dim);padding:1px 8px;border-radius:10px;vertical-align:middle;}
+.cc-warn{display:none;color:#fff;font-size:12px;margin:0 0 14px;border-left:2px solid #fff;padding-left:10px;}
+.cc-warn.show{display:block;}
+.cc-switch{position:relative;flex-shrink:0;width:40px;height:22px;}
+.cc-switch input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:1;}
+.cc-switch i{position:absolute;inset:0;background:#2B2B2B;border-radius:22px;transition:background .25s ease;}
+.cc-switch i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#8A8A8A;transition:transform .25s ease,background .25s ease;}
+.cc-switch input:checked + i{background:#fff;}
+.cc-switch input:checked + i::after{transform:translateX(18px);background:#000;}
+.cc-switch input:disabled{cursor:not-allowed;}
+.cc-switch input:disabled + i{opacity:.5;}
+.cc-switch input:focus-visible + i{outline:2px solid #fff;outline-offset:2px;}
+.cc-mini{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:10px;
+  background:#111;border:1px solid var(--line);padding:8px 8px 8px 16px;font-size:12px;color:var(--dim);
+  max-width:calc(100vw - 24px);box-shadow:0 6px 24px rgba(0,0,0,.5);
+}
+.cc-mini .cc-btn{padding:7px 12px;font-size:12px;white-space:nowrap;}
+.cc-x{background:none;border:none;color:var(--dim);font-size:16px;line-height:1;padding:6px 8px;cursor:pointer;}
+.cc-x:hover{color:#fff;}
+.video-slot iframe[data-src]:not([src]){visibility:hidden;}
+.cc-video{
+  position:absolute;inset:0;z-index:1;background:#111;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;
+}
+.cc-video p{color:var(--dim);font-size:13px;max-width:300px;}
+.cc-video small{color:#6f6f6f;font-size:11px;max-width:300px;}
+.cc-video small a{color:var(--dim);text-decoration:underline;text-underline-offset:2px;}
+@media(max-width:560px){
+  .cc{left:12px;right:12px;bottom:12px;width:auto;padding:18px;max-height:calc(100vh - 24px);}
+  .cc-mini{flex-wrap:wrap;justify-content:center;padding:10px 12px;}
+}
 </style>
 </head>
 <body>
@@ -279,8 +340,8 @@ footer .brand img{height:22px;}
     <div class="subcat">
       <h3>Eventové videá</h3>
       <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Event video 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="Event video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <!-- ==== VIDEO polozka: Event video 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v data-src="" (musi byt data-src, NIE src — inak sa video nacita bez suhlasu s cookies)) ==== -->
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" data-src="https://www.youtube-nocookie.com/embed/d6C-4ZUf7iI" title="Event video 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Event video" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
       <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="" style="opacity:.4;"></div>
       </div>
@@ -289,8 +350,8 @@ footer .brand img{height:22px;}
     <div class="subcat">
       <h3>Autá</h3>
       <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Car edit 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="Car edit 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <!-- ==== VIDEO polozka: Car edit 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v data-src="" (musi byt data-src, NIE src — inak sa video nacita bez suhlasu s cookies)) ==== -->
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" data-src="https://www.youtube-nocookie.com/embed/ABaZtSTwsd8" title="Car edit 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Car edits" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
       <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="" style="opacity:.4;"></div>
       </div>
@@ -299,8 +360,8 @@ footer .brand img{height:22px;}
     <div class="subcat">
       <h3>Propagačné</h3>
       <div class="sub-grid">
-      <!-- ==== VIDEO polozka: Movie 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v src="") ==== -->
-      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="Movie 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
+      <!-- ==== VIDEO polozka: Movie 01 — SEM PRIDAJ NOVE VIDEO (skopiruj cely <div class="video-slot">...</div> blok a zmen VIDEO_ID v data-src="" (musi byt data-src, NIE src — inak sa video nacita bez suhlasu s cookies)) ==== -->
+      <div class="video-slot" style="border:none;padding:0;"><iframe width="100%" height="100%" data-src="https://www.youtube-nocookie.com/embed/WnljmO42-tg" title="Movie 01" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="aspect-ratio:16/10;display:block;"></iframe></div>
       <!-- ==== VOLNE MIESTO na dalsie video v "Movies" — skopiruj tento riadok, nahrad VIDEO_ID skutocnym YouTube ID (z URL za v=) ==== -->
       <div class="video-slot"><img src="../logo-made-by-david-icon.png" alt="" style="opacity:.4;"></div>
       </div>
@@ -383,7 +444,7 @@ footer .brand img{height:22px;}
 
 <footer>
   <div class="brand"><img src="../logo-made-by-david-icon.png" alt="made_by.david"><span>made_by.david</span></div>
-  <div>© 2026</div>
+  <div>© 2026 · <a href="#" data-cc="settings">Nastavenia cookies</a></div>
 </footer>
 
 <!-- LIGHTBOX GALERIA - nemen, funguje automaticky pre vsetky albumy -->
@@ -493,6 +554,204 @@ document.querySelectorAll('.main-tab').forEach(btn => {
     document.getElementById('group-' + btn.dataset.tab).classList.add('show');
   });
 });
+</script>
+
+<!-- ============ COOKIE CONSENT (GDPR) ============ -->
+<div class="cc" id="ccBanner" role="dialog" aria-label="Nastavenia cookies" hidden>
+  <div class="cc-view" id="ccViewMain">
+    <div class="cc-title">Cookies a súkromie</div>
+    <p class="cc-text">Videá v portfóliu sa načítavajú z YouTube a na anonymnú štatistiku návštevnosti používam Google Analytics. Obe služby môžu ukladať cookies, preto sa načítajú až po tvojom súhlase. Tvoju voľbu si pamätám 12 mesiacov.</p>
+    <div class="cc-actions">
+      <button type="button" class="cc-btn cc-primary" data-cc="all">Povoliť všetko</button>
+      <button type="button" class="cc-btn" data-cc="reject">Odmietnuť</button>
+      <button type="button" class="cc-btn cc-link" data-cc="settings">Nastavenia</button>
+    </div>
+  </div>
+  <div class="cc-view" id="ccViewSettings" hidden>
+    <div class="cc-title">Nastavenia cookies</div>
+    <p class="cc-text">Vyber, ktoré cookies povolíš. Voľbu môžeš kedykoľvek zmeniť cez odkaz „Nastavenia cookies“ v pätičke stránky.</p>
+    <div class="cc-cat">
+      <div>
+        <h4>Nevyhnutné<span class="cc-tag">vždy zapnuté</span></h4>
+        <p>Uloženie tvojej voľby o cookies v prehliadači na 12 mesiacov. Neobsahuje žiadne osobné údaje.</p>
+      </div>
+      <label class="cc-switch"><input type="checkbox" checked disabled aria-label="Nevyhnutné"><i></i></label>
+    </div>
+    <div class="cc-cat">
+      <div>
+        <h4>Videá (YouTube)<span class="cc-tag">potrebné na zobrazenie videí</span></h4>
+        <p>Prehrávač YouTube (Google) sa načíta až po povolení a môže ukladať vlastné cookies a spracovať tvoju IP adresu.</p>
+      </div>
+      <label class="cc-switch"><input type="checkbox" id="ccVideos" aria-label="Videá (YouTube)"><i></i></label>
+    </div>
+    <div class="cc-warn" id="ccWarn">Bez povolenia YouTube sa videá nezobrazia — namiesto nich uvidíš len zástupný box.</div>
+    <div class="cc-cat">
+      <div>
+        <h4>Analytika (Google Analytics)</h4>
+        <p>Anonymná štatistika návštevnosti — cookies _ga a _ga_* s platnosťou až 2 roky. Pomáha mi zistiť, ktoré časti webu sú užitočné.</p>
+      </div>
+      <label class="cc-switch"><input type="checkbox" id="ccAnalytics" aria-label="Analytika (Google Analytics)"><i></i></label>
+    </div>
+    <div class="cc-actions" style="margin-top:6px;">
+      <button type="button" class="cc-btn cc-primary" data-cc="save">Uložiť výber</button>
+      <button type="button" class="cc-btn" data-cc="all">Povoliť všetko</button>
+    </div>
+  </div>
+</div>
+
+<div class="cc-mini" id="ccMini" hidden>
+  <span>Videá z YouTube sú vypnuté.</span>
+  <button type="button" class="cc-btn cc-primary" data-cc="videos">Povoliť videá</button>
+  <button type="button" class="cc-btn cc-link" data-cc="settings">Nastavenia</button>
+  <button type="button" class="cc-x" data-cc="dismiss" aria-label="Zavrieť">✕</button>
+</div>
+
+<script>
+/*
+  COOKIE CONSENT
+  - YouTube videá (iframe s data-src) a Google Analytics sa načítajú AŽ po súhlase.
+  - Voľba sa ukladá do localStorage na 12 mesiacov.
+  - Ak niekto videá nepovolí, pri ďalšej návšteve sa ukáže malá lišta dole (dá sa zavrieť krížikom).
+  - Zmena voľby: odkaz "Nastavenia cookies" v pätičke.
+*/
+(function () {
+  var KEY = 'mbd_cookie_consent_v1';
+  var SESSION_KEY = 'mbd_cc_dismissed';
+  var GA_ID = 'G-LQW2T7GZYM';
+  var MAX_AGE = 365 * 24 * 60 * 60 * 1000;
+
+  var banner = document.getElementById('ccBanner');
+  var mini = document.getElementById('ccMini');
+  var viewMain = document.getElementById('ccViewMain');
+  var viewSettings = document.getElementById('ccViewSettings');
+  var chkVideos = document.getElementById('ccVideos');
+  var chkAnalytics = document.getElementById('ccAnalytics');
+  var warn = document.getElementById('ccWarn');
+
+  var loaded = { videos: false, analytics: false };
+  var consent = readConsent();
+
+  function readConsent() {
+    try {
+      var c = JSON.parse(localStorage.getItem(KEY));
+      if (c && typeof c.videos === 'boolean' && typeof c.analytics === 'boolean' && (Date.now() - c.ts) < MAX_AGE) return c;
+    } catch (e) {}
+    return null;
+  }
+  function writeConsent(v, a) {
+    consent = { videos: v, analytics: a, ts: Date.now() };
+    try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch (e) {}
+  }
+  function isDismissed() { try { return sessionStorage.getItem(SESSION_KEY) === '1'; } catch (e) { return false; } }
+  function setDismissed() { try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {} }
+
+  /* ---------- videá ---------- */
+  function frames() { return document.querySelectorAll('iframe[data-src]'); }
+
+  function addPlaceholders() {
+    frames().forEach(function (f) {
+      if (f.getAttribute('src')) return;
+      var slot = f.parentElement;
+      if (slot.querySelector('.cc-video')) return;
+      var o = document.createElement('div');
+      o.className = 'cc-video';
+      o.innerHTML =
+        '<p>Video z YouTube sa načíta po povolení cookies.</p>' +
+        '<button type="button" class="cc-btn cc-primary" data-cc="videos">Povoliť a zobraziť videá</button>' +
+        '<small>Povolí YouTube cookies pre všetky videá na webe. <a href="#" data-cc="settings">Nastavenia</a></small>';
+      slot.appendChild(o);
+    });
+  }
+  function loadVideos() {
+    loaded.videos = true;
+    document.querySelectorAll('.cc-video').forEach(function (o) { o.remove(); });
+    frames().forEach(function (f) {
+      if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src'));
+    });
+  }
+
+  /* ---------- Google Analytics ---------- */
+  function loadAnalytics() {
+    if (loaded.analytics) return;
+    loaded.analytics = true;
+    window['ga-disable-' + GA_ID] = false;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+  }
+  function clearGaCookies() {
+    var host = location.hostname, parts = host.split('.'), domains = [host, '.' + host];
+    for (var i = 1; i < parts.length - 1; i++) domains.push('.' + parts.slice(i).join('.'));
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (/^(_ga|_gid|_gat)/.test(name)) {
+        document.cookie = name + '=; Max-Age=0; path=/';
+        domains.forEach(function (d) { document.cookie = name + '=; Max-Age=0; path=/; domain=' + d; });
+      }
+    });
+    window['ga-disable-' + GA_ID] = true;
+  }
+
+  /* ---------- UI ---------- */
+  function apply() {
+    if (consent && consent.videos) loadVideos(); else addPlaceholders();
+    if (consent && consent.analytics) loadAnalytics();
+  }
+  function openMain() {
+    mini.hidden = true;
+    viewSettings.hidden = true;
+    viewMain.hidden = false;
+    banner.hidden = false;
+  }
+  function openSettings() {
+    chkVideos.checked = !!(consent && consent.videos);
+    chkAnalytics.checked = !!(consent && consent.analytics);
+    updateWarn();
+    mini.hidden = true;
+    viewMain.hidden = true;
+    viewSettings.hidden = false;
+    banner.hidden = false;
+  }
+  function updateWarn() { warn.classList.toggle('show', !chkVideos.checked); }
+
+  function commit(v, a) {
+    var hadVideos = loaded.videos, hadAnalytics = loaded.analytics;
+    writeConsent(v, a);
+    setDismissed();
+    banner.hidden = true;
+    mini.hidden = true;
+    if ((hadVideos && !v) || (hadAnalytics && !a)) {      // súhlas bol odvolaný -> vyčistiť a načítať stránku znova
+      if (hadAnalytics && !a) clearGaCookies();
+      location.reload();
+      return;
+    }
+    apply();
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-cc]');
+    if (!t) return;
+    if (t.tagName === 'A') e.preventDefault();
+    switch (t.getAttribute('data-cc')) {
+      case 'all':      commit(true, true); break;
+      case 'reject':   commit(false, false); break;
+      case 'settings': openSettings(); break;
+      case 'save':     commit(chkVideos.checked, chkAnalytics.checked); break;
+      case 'videos':   commit(true, consent ? consent.analytics : false); break;
+      case 'dismiss':  setDismissed(); mini.hidden = true; break;
+    }
+  });
+  chkVideos.addEventListener('change', updateWarn);
+
+  apply();
+  if (!consent) openMain();
+  else if (!consent.videos && !isDismissed()) mini.hidden = false;
+})();
 </script>
 
 </body>
