@@ -60,7 +60,7 @@ nav{
 .brand{display:flex;align-items:center;gap:10px;}
 .brand img{height:34px;width:auto;}
 .brand span{font-weight:700;font-size:16px;}
-nav ul{list-style:none;display:flex;gap:30px;font-size:14px;font-weight:500;}
+nav ul{list-style:none;display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500;}
 nav ul a{transition:color .25s ease;}
 nav ul a:hover{color:var(--dim);}
 nav ul li:last-child a{
@@ -201,7 +201,7 @@ textarea.form-field{resize:vertical;min-height:90px;}
 }
 .faq summary::-webkit-details-marker{display:none;}
 .faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--dim);transition:transform .25s ease;}
-.faq details[open] summary::after{transform:rotate(45deg);}
+.faq details[open]:not(.closing) summary::after{transform:rotate(45deg);}
 .faq details p{color:var(--dim);font-size:14px;max-width:620px;padding:0 0 22px;}
 
 footer{
@@ -444,6 +444,41 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 } else {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
 }
+</script>
+<script>
+// plynula animacia otvarania a zatvarania casto kladenych otazok
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.faq details').forEach(d => {
+    const summary = d.querySelector('summary');
+    const answer = d.querySelector('p');
+    let anim = null;
+
+    summary.addEventListener('click', e => {
+      if (reduce) return;                       // bez animacie, ak ma user vypnute animacie
+      e.preventDefault();
+      if (anim) anim.cancel();
+
+      d.style.overflow = 'hidden';
+      const start = d.offsetHeight;
+
+      if (!d.open) {                            // OTVARANIE
+        d.open = true;
+        const end = d.offsetHeight;
+        anim = d.animate({ height: [start + 'px', end + 'px'] }, { duration: 350, easing: 'cubic-bezier(.4,0,.2,1)' });
+        answer.animate({ opacity: [0, 1], transform: ['translateY(-6px)', 'translateY(0)'] },
+                       { duration: 350, easing: 'ease' });
+        anim.onfinish = anim.oncancel = () => { anim = null; d.style.overflow = ''; };
+      } else {                                  // ZATVARANIE
+        d.classList.add('closing');
+        const end = summary.offsetHeight + (d.offsetHeight - d.clientHeight);
+        anim = d.animate({ height: [start + 'px', end + 'px'] }, { duration: 300, easing: 'cubic-bezier(.4,0,.2,1)' });
+        anim.onfinish = () => { d.open = false; d.classList.remove('closing'); anim = null; d.style.overflow = ''; };
+        anim.oncancel = () => { d.classList.remove('closing'); anim = null; d.style.overflow = ''; };
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
